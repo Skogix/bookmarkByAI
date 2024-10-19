@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Bookmark</title>
+</head>
+<body>
+    <h1>Add a new bookmark</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.url.label }}{{ form.url(size=64) }}
+        {{ form.submit }}
+    </form>
+    <a href="{{ url_for('index') }}">Back to the list</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <title>Bookmarks</title>
+</head>
+<body>
+  <h1>Bookmarks</h1>
+  <form method="post" action="{{ url_for('search') }}">
+    {{ form.hidden_tag() }}
+    {{ form.search_term.label }} {{ form.search_term() }}
+    {{ form.submit() }}
+  </form>
+  <ul>
+    {% for bookmark in bookmarks %}
+      <li>{{ bookmark.url }} - 
+          <a href="{{ url_for('view_bookmark', id=bookmark.id) }}">View</a> - 
+          <a href="{{ url_for('delete_bookmark', id=bookmark.id) }}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('add_bookmark') }}">Add Bookmark</a>
+</body>
+</html>

@@ -1,0 +1,12 @@
+@app.route('/search', methods=['POST'])
+def search():
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_term = form.search_term.data
+        bookmarks = Bookmark.query.filter(
+            (Bookmark.tags.contains(search_term)) |
+            (Bookmark.description.contains(search_term)) |
+            (Bookmark.category.contains(search_term))
+        ).all()
+        return render_template('index.html', bookmarks=bookmarks, form=form)
+    return redirect(url_for('index'))
